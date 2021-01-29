@@ -1,6 +1,7 @@
 package com.github.io24m.validate4java;
 
 import com.github.io24m.validate4java.validate.BaseValidate;
+import com.github.io24m.validate4java.validate.config.ValidateConfig;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -55,8 +56,8 @@ public class Handle {
                 fieldValue = field.get(value);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+                throw new RuntimeException(e);
             }
-
             Annotation[] annotations = field.getAnnotations();
             for (BaseValidate v : validates) {
                 for (Annotation a : annotations) {

@@ -13,11 +13,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Empty {
-    boolean check() default true;
-
-    String config() default "";
-
     String configKey() default "";
-
-    String configName() default "";
 }

@@ -4,6 +4,7 @@ import com.github.io24m.validate4java.validate.DictValidate;
 import com.github.io24m.validate4java.validate.EmptyValidate;
 import com.github.io24m.validate4java.validate.annotation.Dict;
 import com.github.io24m.validate4java.validate.annotation.Empty;
+import com.github.io24m.validate4java.validate.config.ValidateConfig;
 
 import java.util.List;
 
@@ -14,13 +15,15 @@ public class Main {
         medical.setAge(20);
         Handle handle = new Handle();
         handle.config(new EmptyValidate(), new DictValidate());
-        handle.config(new ValidateConfig());
+        ValidateConfig config = new ValidateConfig();
+
+        handle.config(config);
 
         List<ValidateResult> validateResults = handle.handle(medical, new ValidateConfig());
     }
 
     public static class Dto {
-        @Empty(config = "cfg")
+        @Empty(configKey = "name")
         private String name;
 
         @Dict

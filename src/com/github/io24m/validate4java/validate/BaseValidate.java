@@ -1,6 +1,6 @@
 package com.github.io24m.validate4java.validate;
 
-import com.github.io24m.validate4java.ValidateConfig;
+import com.github.io24m.validate4java.validate.config.ValidateConfig;
 import com.github.io24m.validate4java.ValidateMetadata;
 import com.github.io24m.validate4java.ValidateResult;
 

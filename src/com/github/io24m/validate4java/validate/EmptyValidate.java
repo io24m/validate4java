@@ -1,10 +1,10 @@
 package com.github.io24m.validate4java.validate;
 
 
-import com.github.io24m.validate4java.ValidateConfig;
 import com.github.io24m.validate4java.ValidateMetadata;
 import com.github.io24m.validate4java.ValidateResult;
 import com.github.io24m.validate4java.validate.annotation.Empty;
+import com.github.io24m.validate4java.validate.config.ValidateConfig;
 
 /**
  * @author lk1
@@ -20,9 +20,7 @@ public class EmptyValidate implements BaseValidate {
     @Override
     public ValidateResult check(Object value, Object annotation, ValidateConfig config, ValidateMetadata metadata) {
         Empty empty = (Empty) annotation;
-        if (!empty.check()) {
-            return ValidateResult.success();
-        }
+        Object cfg = config.get(empty.configKey());
 
         if (value == null) {
             ValidateResult res = new ValidateResult();
@@ -30,7 +28,6 @@ public class EmptyValidate implements BaseValidate {
             res.setErrorMessage(metadata.getName() + ":not empty.");
             return res;
         }
-
         return ValidateResult.success();
     }
 }
