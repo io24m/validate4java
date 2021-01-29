@@ -1,5 +1,8 @@
 package com.github.io24m.validate4java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author lk1
  * @description
@@ -12,6 +15,17 @@ public class ValidateConfig {
         Default = new ValidateConfig();
     }
 
+    private boolean enableConfig = false;
 
+    //配置
+    private List<ValidateConfig> configs = new ArrayList<>();
+    private String configKey;
+    private String configName;
+    private boolean check;
+    private Class clazz;
+
+    public void add() {
+
+    }
 
 }

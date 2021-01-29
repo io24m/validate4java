@@ -16,4 +16,8 @@ public @interface Empty {
     boolean check() default true;
 
     String config() default "";
+
+    String configKey() default "";
+
+    String configName() default "";
 }

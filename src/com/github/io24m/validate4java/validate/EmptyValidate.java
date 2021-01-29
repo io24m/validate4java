@@ -13,7 +13,7 @@ import com.github.io24m.validate4java.validate.annotation.Empty;
  */
 public class EmptyValidate implements BaseValidate {
     @Override
-    public boolean check(Object an, ValidateConfig config) {
+    public boolean filter(Object an, ValidateConfig config) {
         return an instanceof Empty;
     }
 
@@ -27,7 +27,7 @@ public class EmptyValidate implements BaseValidate {
         if (value == null) {
             ValidateResult res = new ValidateResult();
             res.setSuccess(false);
-            res.setErrorMessage(metadata.getName() + "：不能为空");
+            res.setErrorMessage(metadata.getName() + ":not empty.");
             return res;
         }
 

@@ -12,7 +12,7 @@ import com.github.io24m.validate4java.validate.annotation.Dict;
  */
 public class DictValidate implements BaseValidate {
     @Override
-    public boolean check(Object an, ValidateConfig config) {
+    public boolean filter(Object an, ValidateConfig config) {
         return an instanceof Dict;
     }
 

@@ -60,7 +60,7 @@ public class Handle {
             Annotation[] annotations = field.getAnnotations();
             for (BaseValidate v : validates) {
                 for (Annotation a : annotations) {
-                    boolean check = v.check(a, config);
+                    boolean check = v.filter(a, config);
                     if (check) {
                         ValidateMetadata validateMetadata = new ValidateMetadata();
                         validateMetadata.setName(name);
@@ -74,5 +74,4 @@ public class Handle {
         }
         return res;
     }
-
 }

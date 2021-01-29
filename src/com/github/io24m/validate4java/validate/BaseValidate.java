@@ -10,7 +10,7 @@ import com.github.io24m.validate4java.ValidateResult;
  * @create 2021-01-29 14:40
  */
 public interface BaseValidate {
-    boolean check(Object an, ValidateConfig config);
+    boolean filter(Object an, ValidateConfig config);
 
     ValidateResult check(Object value, Object annotation, ValidateConfig config, ValidateMetadata metadata);
 }
