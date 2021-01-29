@@ -45,4 +45,10 @@ public class ValidateResult {
     public void setMetadata(List<Object> metadata) {
         this.metadata = metadata;
     }
+
+    public static ValidateResult success() {
+        ValidateResult validateResult = new ValidateResult();
+        validateResult.setSuccess(true);
+        return validateResult;
+    }
 }

@@ -1,5 +1,7 @@
 package com.github.io24m.validate4java;
 
+import com.github.io24m.validate4java.validate.BaseValidate;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;

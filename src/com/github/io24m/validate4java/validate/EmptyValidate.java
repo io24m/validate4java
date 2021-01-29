@@ -1,7 +1,10 @@
-package com.github.io24m.validate4java;
+package com.github.io24m.validate4java.validate;
 
 
-import com.github.io24m.validate4java.annotation.Empty;
+import com.github.io24m.validate4java.ValidateConfig;
+import com.github.io24m.validate4java.ValidateMetadata;
+import com.github.io24m.validate4java.ValidateResult;
+import com.github.io24m.validate4java.validate.annotation.Empty;
 
 /**
  * @author lk1
