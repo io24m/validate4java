@@ -1,8 +1,9 @@
 package com.github.io24m.validate4java;
 
+import com.github.io24m.validate4java.validate.DictValidate;
+import com.github.io24m.validate4java.validate.EmptyValidate;
 import com.github.io24m.validate4java.validate.annotation.Dict;
 import com.github.io24m.validate4java.validate.annotation.Empty;
-import com.github.io24m.validate4java.validate.EmptyValidate;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Main {
         Dto medical = new Dto();
         medical.setAge(20);
         Handle handle = new Handle();
-        handle.config(new EmptyValidate(), new EmptyValidate());
+        handle.config(new EmptyValidate(), new DictValidate());
         handle.config(new ValidateConfig());
 
         List<ValidateResult> validateResults = handle.handle(medical, new ValidateConfig());

@@ -19,14 +19,18 @@ public class EmptyValidate implements BaseValidate {
 
     @Override
     public ValidateResult check(Object value, Object annotation, ValidateConfig config, ValidateMetadata metadata) {
-        ValidateResult res = new ValidateResult();
+        Empty empty = (Empty) annotation;
+        if (!empty.check()) {
+            return ValidateResult.success();
+        }
+
         if (value == null) {
+            ValidateResult res = new ValidateResult();
             res.setSuccess(false);
             res.setErrorMessage(metadata.getName() + "：不能为空");
             return res;
         }
-        Empty empty = (Empty) annotation;
-        res.setSuccess(true);
-        return res;
+
+        return ValidateResult.success();
     }
 }
