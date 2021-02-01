@@ -1,5 +1,6 @@
 package com.github.io24m.validate4java;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -12,7 +13,14 @@ import java.util.stream.Collectors;
 public class ValidateResult {
     private String type;
     private String name;
-    private List<ValidateInfo> validateInfos;
+    private List<ValidateInfo> validateInfos = new ArrayList<>();
+
+    public boolean success() {
+        if (validateInfos == null || validateInfos.size() == 0) {
+            return true;
+        }
+        return validateInfos.stream().anyMatch(ValidateInfo::isSuccess);
+    }
 
     public List<String> getErrorMessage(Function<ValidateInfo, Boolean> filter) {
         List<String> errorMessage = validateInfos.stream()

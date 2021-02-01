@@ -27,14 +27,14 @@ public class Main {
     }
 
     public static class Dto {
-        @Empty(configKey = "name", errorMessage = "姓名不能为空", pass = true)
+        @Empty(configKey = "name", errorMessage = "name empty", pass = true)
         private String name;
 
-        @Dict(errorMessage = "性别不在字典值中")
-        @Empty(configKey = "sex", errorMessage = "性别不能为空")
+        @Dict(errorMessage = "sex not in dict")
+        @Empty(configKey = "sex", errorMessage = "sex empty")
         private String sex;
 
-        @Dict(errorMessage = "年龄不在字典值中")
+        @Dict(errorMessage = "age not in dict")
         private Integer age;
 
         public String getName() {

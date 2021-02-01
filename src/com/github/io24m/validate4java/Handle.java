@@ -34,10 +34,8 @@ public class Handle {
             }
             boolean pass = baseValidate.pass(m.getAnnotation());
             info.setSuccess(pass);
-            if (!success) {
-                String errorMessage = baseValidate.errorMessage(m.getValue(), m.getAnnotation(), m);
-                info.setErrorMessage(errorMessage);
-            }
+            String errorMessage = baseValidate.errorMessage(m.getValue(), m.getAnnotation(), m);
+            info.setErrorMessage(errorMessage);
             info.setType(m.getType());
             info.setFileName(m.getFileName());
             res.add(info);
@@ -48,7 +46,6 @@ public class Handle {
         result.setName(clazz.getSimpleName());
         return result;
     }
-
 
     private List<ValidateMetadata> validateMetadata(Object value) {
         List<ValidateMetadata> res = new ArrayList<>();
