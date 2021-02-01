@@ -1,30 +1,35 @@
 package com.github.io24m.validate4java;
 
 import com.github.io24m.validate4java.validate.DictValidate;
-import com.github.io24m.validate4java.validate.EmptyValidate;
+import com.github.io24m.validate4java.validate.EmptyConfigValidate;
 import com.github.io24m.validate4java.validate.annotation.Dict;
 import com.github.io24m.validate4java.validate.annotation.Empty;
-import com.github.io24m.validate4java.validate.config.ValidateConfig;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) {
         Dto medical = new Dto();
         medical.setAge(20);
+
         Handle handle = new Handle();
-        handle.config(new EmptyValidate(), new DictValidate());
-        ValidateConfig config = new ValidateConfig();
+        Map<String, Boolean> cfg = new HashMap<>();
+        cfg.put("name", true);
+        cfg.put("sex", false);
+        handle.config(new EmptyConfigValidate(cfg), new DictValidate());
 
-        handle.config(config);
-
-        List<ValidateResult> validateResults = handle.handle(medical, new ValidateConfig());
+        List<ValidateInfo> validateResults = handle.handle(medical);
     }
 
     public static class Dto {
         @Empty(configKey = "name")
         private String name;
+
+        @Empty(configKey = "sex")
+        private String sex;
 
         @Dict
         private Integer age;
@@ -35,6 +40,14 @@ public class Main {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getSex() {
+            return sex;
+        }
+
+        public void setSex(String sex) {
+            this.sex = sex;
         }
 
         public Integer getAge() {

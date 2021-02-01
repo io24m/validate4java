@@ -8,7 +8,7 @@ import java.util.List;
  * @create 2021-01-29 14:53
  */
 
-public class ValidateResult {
+public class ValidateInfo {
     private boolean success;
     private String format;
     private String errorMessage;
@@ -46,8 +46,8 @@ public class ValidateResult {
         this.metadata = metadata;
     }
 
-    public static ValidateResult success() {
-        ValidateResult validateResult = new ValidateResult();
+    public static ValidateInfo success() {
+        ValidateInfo validateResult = new ValidateInfo();
         validateResult.setSuccess(true);
         return validateResult;
     }

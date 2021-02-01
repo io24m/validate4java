@@ -1,8 +1,7 @@
 package com.github.io24m.validate4java.validate;
 
-import com.github.io24m.validate4java.validate.config.ValidateConfig;
 import com.github.io24m.validate4java.ValidateMetadata;
-import com.github.io24m.validate4java.ValidateResult;
+import com.github.io24m.validate4java.ValidateInfo;
 
 /**
  * @author lk1
@@ -10,7 +9,7 @@ import com.github.io24m.validate4java.ValidateResult;
  * @create 2021-01-29 14:40
  */
 public interface BaseValidate {
-    boolean filter(Object an, ValidateConfig config);
+    boolean filter(Object an);
 
-    ValidateResult check(Object value, Object annotation, ValidateConfig config, ValidateMetadata metadata);
+    ValidateInfo check(Object value, Object annotation, ValidateMetadata metadata);
 }

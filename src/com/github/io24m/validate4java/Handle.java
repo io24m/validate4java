@@ -1,7 +1,6 @@
 package com.github.io24m.validate4java;
 
 import com.github.io24m.validate4java.validate.BaseValidate;
-import com.github.io24m.validate4java.validate.config.ValidateConfig;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -18,40 +17,29 @@ import java.util.List;
 public class Handle {
     private List<BaseValidate> validates = new ArrayList<>();
 
-    private ValidateConfig validateConfig = ValidateConfig.Default;
-
-    public void config(ValidateConfig config) {
-        validateConfig = config;
-    }
-
     public void config(BaseValidate... handles) {
         validates.addAll(Arrays.asList(handles));
     }
 
-    public List<ValidateResult> handle(Object value) {
-        return handle(value, validateConfig);
-    }
-
-    public List<ValidateResult> handle(Object value, ValidateConfig config) {
-        List<ValidateResult> res = new ArrayList<>();
-
-        List<ValidateMetadata> validateMetadata = validateMetadata(value, config);
+    public List<ValidateInfo> handle(Object value) {
+        List<ValidateInfo> res = new ArrayList<>();
+        List<ValidateMetadata> validateMetadata = validateMetadata(value);
         for (ValidateMetadata m : validateMetadata) {
             BaseValidate baseValidate = m.getBaseValidate();
-            ValidateResult check = baseValidate.check(m.getValue(), m.getAnnotation(), config, m);
+            ValidateInfo check = baseValidate.check(m.getValue(), m.getAnnotation(), m);
             res.add(check);
         }
         return res;
     }
 
-    private List<ValidateMetadata> validateMetadata(Object value, ValidateConfig config) {
+    private List<ValidateMetadata> validateMetadata(Object value) {
         List<ValidateMetadata> res = new ArrayList<>();
         Class<?> clazz = value.getClass();
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
             String name = field.getName();
-            Object fieldValue = null;
+            Object fieldValue;
             try {
                 fieldValue = field.get(value);
             } catch (IllegalAccessException e) {
@@ -61,7 +49,7 @@ public class Handle {
             Annotation[] annotations = field.getAnnotations();
             for (BaseValidate v : validates) {
                 for (Annotation a : annotations) {
-                    boolean check = v.filter(a, config);
+                    boolean check = v.filter(a);
                     if (check) {
                         ValidateMetadata validateMetadata = new ValidateMetadata();
                         validateMetadata.setName(name);

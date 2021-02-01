@@ -1,8 +1,7 @@
 package com.github.io24m.validate4java.validate;
 
-import com.github.io24m.validate4java.validate.config.ValidateConfig;
 import com.github.io24m.validate4java.ValidateMetadata;
-import com.github.io24m.validate4java.ValidateResult;
+import com.github.io24m.validate4java.ValidateInfo;
 import com.github.io24m.validate4java.validate.annotation.Dict;
 
 /**
@@ -12,13 +11,13 @@ import com.github.io24m.validate4java.validate.annotation.Dict;
  */
 public class DictValidate implements BaseValidate {
     @Override
-    public boolean filter(Object an, ValidateConfig config) {
+    public boolean filter(Object an) {
         return an instanceof Dict;
     }
 
     @Override
-    public ValidateResult check(Object value, Object annotation, ValidateConfig config, ValidateMetadata metadata) {
+    public ValidateInfo check(Object value, Object annotation, ValidateMetadata metadata) {
 
-        return ValidateResult.success();
+        return ValidateInfo.success();
     }
 }
