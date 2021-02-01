@@ -6,7 +6,6 @@ import com.github.io24m.validate4java.validate.annotation.Dict;
 import com.github.io24m.validate4java.validate.annotation.Empty;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -21,14 +20,14 @@ public class Main {
         cfg.put("sex", false);
         handle.config(new EmptyConfigValidate(cfg), new DictValidate());
 
-        List<ValidateInfo> validateResults = handle.handle(medical);
+        handle.handle(medical);
     }
 
     public static class Dto {
-        @Empty(configKey = "name")
+        @Empty(configKey = "name", errorMessage = "姓名不能为空")
         private String name;
 
-        @Empty(configKey = "sex")
+        @Empty(configKey = "sex", errorMessage = "性别不能为空")
         private String sex;
 
         @Dict

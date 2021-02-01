@@ -14,4 +14,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Empty {
     String configKey() default "";
+
+    String errorMessage() default "";
 }

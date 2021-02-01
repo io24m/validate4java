@@ -21,7 +21,8 @@ public class Handle {
         validates.addAll(Arrays.asList(handles));
     }
 
-    public List<ValidateInfo> handle(Object value) {
+    public ValidateResult handle(Object value) {
+        ValidateResult result = new ValidateResult();
         List<ValidateInfo> res = new ArrayList<>();
         List<ValidateMetadata> validateMetadata = validateMetadata(value);
         for (ValidateMetadata m : validateMetadata) {
@@ -29,8 +30,13 @@ public class Handle {
             ValidateInfo check = baseValidate.check(m.getValue(), m.getAnnotation(), m);
             res.add(check);
         }
-        return res;
+        Class<?> clazz = value.getClass();
+        result.setValidateInfos(res);
+        result.setType(clazz.getTypeName());
+        result.setName(clazz.getSimpleName());
+        return result;
     }
+
 
     private List<ValidateMetadata> validateMetadata(Object value) {
         List<ValidateMetadata> res = new ArrayList<>();
