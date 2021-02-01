@@ -16,8 +16,14 @@ public class DictValidate implements BaseValidate {
     }
 
     @Override
-    public ValidateInfo check(Object value, Object annotation, ValidateMetadata metadata) {
+    public boolean check(Object value, Object annotation, ValidateMetadata metadata) {
 
-        return ValidateInfo.success();
+        return false;
+    }
+
+    @Override
+    public String errorMessage(Object value, Object annotation, ValidateMetadata metadata) {
+        Dict dict = (Dict) annotation;
+        return dict.errorMessage();
     }
 }

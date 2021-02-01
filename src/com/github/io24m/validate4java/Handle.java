@@ -26,9 +26,17 @@ public class Handle {
         List<ValidateInfo> res = new ArrayList<>();
         List<ValidateMetadata> validateMetadata = validateMetadata(value);
         for (ValidateMetadata m : validateMetadata) {
+            ValidateInfo info=new ValidateInfo();
             BaseValidate baseValidate = m.getBaseValidate();
-            ValidateInfo check = baseValidate.check(m.getValue(), m.getAnnotation(), m);
-            res.add(check);
+            boolean success = baseValidate.check(m.getValue(), m.getAnnotation(), m);
+            info.setSuccess(success);
+            if (!success){
+                String errorMessage = baseValidate.errorMessage(m.getValue(), m.getAnnotation(), m);
+                info.setErrorMessage(errorMessage);
+            }
+            info.setType(m.getType());
+            info.setFileName(m.getFileName());
+            res.add(info);
         }
         Class<?> clazz = value.getClass();
         result.setValidateInfos(res);
@@ -58,10 +66,11 @@ public class Handle {
                     boolean check = v.filter(a);
                     if (check) {
                         ValidateMetadata validateMetadata = new ValidateMetadata();
-                        validateMetadata.setName(name);
+                        validateMetadata.setFileName(name);
                         validateMetadata.setValue(fieldValue);
                         validateMetadata.setAnnotation(a);
                         validateMetadata.setBaseValidate(v);
+                        validateMetadata.setType(field.getType());
                         res.add(validateMetadata);
                     }
                 }

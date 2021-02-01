@@ -10,6 +10,6 @@ import com.github.io24m.validate4java.ValidateInfo;
  */
 public interface BaseValidate {
     boolean filter(Object an);
-
-    ValidateInfo check(Object value, Object annotation, ValidateMetadata metadata);
+    boolean check(Object value, Object annotation, ValidateMetadata metadata);
+    String errorMessage(Object value, Object annotation, ValidateMetadata metadata);
 }

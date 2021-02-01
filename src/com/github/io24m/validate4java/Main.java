@@ -6,6 +6,7 @@ import com.github.io24m.validate4java.validate.annotation.Dict;
 import com.github.io24m.validate4java.validate.annotation.Empty;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -17,20 +18,23 @@ public class Main {
         Handle handle = new Handle();
         Map<String, Boolean> cfg = new HashMap<>();
         cfg.put("name", true);
-        cfg.put("sex", false);
+        cfg.put("sex", true);
         handle.config(new EmptyConfigValidate(cfg), new DictValidate());
 
-        handle.handle(medical);
+        ValidateResult result = handle.handle(medical);
+        List<String> errorMessage = result.getErrorMessage();
+
     }
 
     public static class Dto {
         @Empty(configKey = "name", errorMessage = "姓名不能为空")
         private String name;
 
+        @Dict(errorMessage = "性别不在字典值中")
         @Empty(configKey = "sex", errorMessage = "性别不能为空")
         private String sex;
 
-        @Dict
+        @Dict(errorMessage = "年龄不在字典值中")
         private Integer age;
 
         public String getName() {

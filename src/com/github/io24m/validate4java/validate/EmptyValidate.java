@@ -1,7 +1,6 @@
 package com.github.io24m.validate4java.validate;
 
 
-import com.github.io24m.validate4java.ValidateInfo;
 import com.github.io24m.validate4java.ValidateMetadata;
 import com.github.io24m.validate4java.validate.annotation.Empty;
 
@@ -17,14 +16,13 @@ public class EmptyValidate implements BaseValidate {
     }
 
     @Override
-    public ValidateInfo check(Object value, Object annotation, ValidateMetadata metadata) {
+    public boolean check(Object value, Object annotation, ValidateMetadata metadata) {
+        return value != null;
+    }
+
+    @Override
+    public String errorMessage(Object value, Object annotation, ValidateMetadata metadata) {
         Empty empty = (Empty) annotation;
-        if (value == null) {
-            ValidateInfo res = new ValidateInfo();
-            res.setSuccess(false);
-            res.setErrorMessage(empty.errorMessage());
-            return res;
-        }
-        return ValidateInfo.success();
+        return empty.errorMessage();
     }
 }

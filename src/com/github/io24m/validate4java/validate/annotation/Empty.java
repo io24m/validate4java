@@ -13,6 +13,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Empty {
+    boolean pass() default false;
+
     String configKey() default "";
 
     String errorMessage() default "";

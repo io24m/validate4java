@@ -9,17 +9,26 @@ import com.github.io24m.validate4java.validate.BaseValidate;
  * @create 2021-01-29 15:04
  */
 public class ValidateMetadata {
-    private String name;
+    private Class type;
+    private String fileName;
     private Object value;
     private Object annotation;
     private BaseValidate baseValidate;
 
-    public String getName() {
-        return name;
+    public Class getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(Class type) {
+        this.type = type;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public Object getValue() {

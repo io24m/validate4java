@@ -1,7 +1,5 @@
 package com.github.io24m.validate4java;
 
-import java.util.List;
-
 /**
  * @author lk1
  * @description
@@ -12,9 +10,8 @@ public class ValidateInfo {
     private String fileName;
     private Class type;
     private boolean success;
-    private String format;
     private String errorMessage;
-    private List<Object> metadata;
+    private String format;
 
     public static ValidateInfo success() {
         ValidateInfo validateResult = new ValidateInfo();
@@ -60,13 +57,5 @@ public class ValidateInfo {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
-    }
-
-    public List<Object> getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(List<Object> metadata) {
-        this.metadata = metadata;
     }
 }
