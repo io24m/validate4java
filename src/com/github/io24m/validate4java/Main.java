@@ -22,8 +22,12 @@ public class Main {
         handle.config(new EmptyConfigValidate(cfg), new DictValidate());
 
         ValidateResult result = handle.handle(medical);
+        boolean success = result.success();
+        System.out.println(success);
         List<String> errorMessage = result.getErrorMessage();
+        System.out.println(errorMessage);
         List<String> message = result.getMessage();
+        System.out.println(message);
     }
 
     public static class Dto {
