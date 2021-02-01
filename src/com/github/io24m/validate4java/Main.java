@@ -23,11 +23,11 @@ public class Main {
 
         ValidateResult result = handle.handle(medical);
         List<String> errorMessage = result.getErrorMessage();
-
+        List<String> message = result.getMessage();
     }
 
     public static class Dto {
-        @Empty(configKey = "name", errorMessage = "姓名不能为空")
+        @Empty(configKey = "name", errorMessage = "姓名不能为空", pass = true)
         private String name;
 
         @Dict(errorMessage = "性别不在字典值中")

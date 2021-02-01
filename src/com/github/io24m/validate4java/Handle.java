@@ -26,11 +26,15 @@ public class Handle {
         List<ValidateInfo> res = new ArrayList<>();
         List<ValidateMetadata> validateMetadata = validateMetadata(value);
         for (ValidateMetadata m : validateMetadata) {
-            ValidateInfo info=new ValidateInfo();
+            ValidateInfo info = new ValidateInfo();
             BaseValidate baseValidate = m.getBaseValidate();
             boolean success = baseValidate.check(m.getValue(), m.getAnnotation(), m);
-            info.setSuccess(success);
-            if (!success){
+            if (success) {
+                continue;
+            }
+            boolean pass = baseValidate.pass(m.getAnnotation());
+            info.setSuccess(pass);
+            if (!success) {
                 String errorMessage = baseValidate.errorMessage(m.getValue(), m.getAnnotation(), m);
                 info.setErrorMessage(errorMessage);
             }

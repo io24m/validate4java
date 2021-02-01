@@ -9,7 +9,7 @@ import com.github.io24m.validate4java.validate.annotation.Empty;
  * @description
  * @create 2021-01-29 14:43
  */
-public class EmptyValidate implements BaseValidate {
+public class EmptyValidate extends AbstractValidate {
     @Override
     public boolean filter(Object annotation) {
         return annotation instanceof Empty;

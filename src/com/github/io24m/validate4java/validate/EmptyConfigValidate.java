@@ -26,4 +26,10 @@ public class EmptyConfigValidate extends EmptyValidate {
         Boolean config = this.config.get(empty.configKey());
         return config == null || config;
     }
+
+    @Override
+    public boolean pass(Object annotation) {
+        Empty empty = (Empty) annotation;
+        return empty.pass();
+    }
 }

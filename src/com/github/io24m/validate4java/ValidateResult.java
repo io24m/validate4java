@@ -14,22 +14,20 @@ public class ValidateResult {
     private String name;
     private List<ValidateInfo> validateInfos;
 
-    public List<String> getErrorMessage(Function<ValidateInfo, String> func) {
+    public List<String> getErrorMessage(Function<ValidateInfo, Boolean> filter) {
         List<String> errorMessage = validateInfos.stream()
-                .filter(x -> !x.isSuccess())
-                .map(x -> {
-                    if (func == null) {
-                        return x.getErrorMessage();
-                    } else {
-                        return func.apply(x);
-                    }
-                })
+                .filter(filter::apply)
+                .map(ValidateInfo::getErrorMessage)
                 .collect(Collectors.toList());
         return errorMessage;
     }
 
     public List<String> getErrorMessage() {
-        return getErrorMessage(null);
+        return getErrorMessage(x -> !x.isSuccess());
+    }
+
+    public List<String> getMessage() {
+        return getErrorMessage(ValidateInfo::isSuccess);
     }
 
     public String getType() {
