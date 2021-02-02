@@ -9,10 +9,10 @@ import java.util.Map;
  * @description
  * @create 2021-02-01 10:39
  */
-public class EmptyConfigValidate extends EmptyValidate {
+public class EmptyConfigValidator extends EmptyValidator {
     private Map<String, Boolean> config;
 
-    public EmptyConfigValidate(Map<String, Boolean> config) {
+    public EmptyConfigValidator(Map<String, Boolean> config) {
         this.config = config;
     }
 

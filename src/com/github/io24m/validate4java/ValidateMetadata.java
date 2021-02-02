@@ -1,7 +1,7 @@
 package com.github.io24m.validate4java;
 
 
-import com.github.io24m.validate4java.validate.BaseValidate;
+import com.github.io24m.validate4java.validate.BaseValidator;
 
 /**
  * @author lk1
@@ -13,7 +13,7 @@ public class ValidateMetadata {
     private String fileName;
     private Object value;
     private Object annotation;
-    private BaseValidate baseValidate;
+    private BaseValidator baseValidate;
 
     public Class getType() {
         return type;
@@ -47,11 +47,11 @@ public class ValidateMetadata {
         this.annotation = annotation;
     }
 
-    public BaseValidate getBaseValidate() {
+    public BaseValidator getBaseValidate() {
         return baseValidate;
     }
 
-    public void setBaseValidate(BaseValidate baseValidate) {
+    public void setBaseValidate(BaseValidator baseValidate) {
         this.baseValidate = baseValidate;
     }
 }

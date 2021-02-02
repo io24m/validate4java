@@ -1,6 +1,6 @@
 package com.github.io24m.validate4java;
 
-import com.github.io24m.validate4java.validate.BaseValidate;
+import com.github.io24m.validate4java.validate.BaseValidator;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -15,9 +15,9 @@ import java.util.List;
  */
 
 public class Handle {
-    private List<BaseValidate> validates = new ArrayList<>();
+    private List<BaseValidator> validates = new ArrayList<>();
 
-    public void config(BaseValidate... handles) {
+    public void config(BaseValidator... handles) {
         validates.addAll(Arrays.asList(handles));
     }
 
@@ -27,7 +27,7 @@ public class Handle {
         List<ValidateMetadata> validateMetadata = validateMetadata(value);
         for (ValidateMetadata m : validateMetadata) {
             ValidateInfo info = new ValidateInfo();
-            BaseValidate baseValidate = m.getBaseValidate();
+            BaseValidator baseValidate = m.getBaseValidate();
             boolean success = baseValidate.check(m.getValue(), m.getAnnotation(), m);
             if (success) {
                 continue;
@@ -62,7 +62,7 @@ public class Handle {
                 throw new RuntimeException(e);
             }
             Annotation[] annotations = field.getAnnotations();
-            for (BaseValidate v : validates) {
+            for (BaseValidator v : validates) {
                 for (Annotation a : annotations) {
                     boolean check = v.filter(a);
                     if (check) {

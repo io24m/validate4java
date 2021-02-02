@@ -7,7 +7,7 @@ import com.github.io24m.validate4java.ValidateMetadata;
  * @description
  * @create 2021-01-29 14:40
  */
-public interface BaseValidate {
+public interface BaseValidator {
     boolean filter(Object annotation);
 
     boolean pass(Object annotation);

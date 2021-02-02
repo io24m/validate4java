@@ -1,7 +1,7 @@
 package com.github.io24m.validate4java;
 
-import com.github.io24m.validate4java.validate.DictValidate;
-import com.github.io24m.validate4java.validate.EmptyConfigValidate;
+import com.github.io24m.validate4java.validate.DictValidator;
+import com.github.io24m.validate4java.validate.EmptyConfigValidator;
 import com.github.io24m.validate4java.validate.annotation.Dict;
 import com.github.io24m.validate4java.validate.annotation.Empty;
 
@@ -19,7 +19,7 @@ public class Main {
         Map<String, Boolean> cfg = new HashMap<>();
         cfg.put("name", true);
         cfg.put("sex", true);
-        handle.config(new EmptyConfigValidate(cfg), new DictValidate());
+        handle.config(new EmptyConfigValidator(cfg), new DictValidator());
 
         ValidateResult result = handle.handle(medical);
         boolean success = result.success();

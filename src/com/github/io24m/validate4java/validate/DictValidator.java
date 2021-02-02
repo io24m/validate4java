@@ -8,7 +8,7 @@ import com.github.io24m.validate4java.validate.annotation.Dict;
  * @description
  * @create 2021-01-29 16:36
  */
-public class DictValidate extends AbstractValidate {
+public class DictValidator extends AbstractValidator {
     @Override
     public boolean filter(Object annotation) {
         return annotation instanceof Dict;
