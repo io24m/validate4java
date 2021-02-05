@@ -22,7 +22,7 @@ public class EmptyConfigValidator extends EmptyValidator {
         if (config == null) {
             return super.filter(annotation);
         }
-        return config.check;
+        return config.isCheck();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class EmptyConfigValidator extends EmptyValidator {
         if (config == null) {
             return super.pass(annotation);
         }
-        return config.pass;
+        return config.isPass();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class EmptyConfigValidator extends EmptyValidator {
         if (config == null) {
             return super.errorMessage(value, annotation, metadata);
         }
-        return config.errorMessage;
+        return config.getErrorMessage();
     }
 
 }

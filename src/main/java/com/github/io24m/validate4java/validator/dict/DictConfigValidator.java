@@ -23,7 +23,7 @@ public class DictConfigValidator extends DictValidator {
         DictConfig dictConfig = config.get(annotation.configKey());
         if (dictConfig == null)
             return super.filter(annotation);
-        return dictConfig.check;
+        return dictConfig.isCheck();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class DictConfigValidator extends DictValidator {
         DictConfig dictConfig = config.get(annotation.configKey());
         if (dictConfig == null)
             return super.errorMessage(value, annotation, metadata);
-        return dictConfig.errorMessage;
+        return dictConfig.getErrorMessage();
 
     }
 
@@ -40,6 +40,6 @@ public class DictConfigValidator extends DictValidator {
         DictConfig dictConfig = config.get(annotation.configKey());
         if (dictConfig == null)
             return super.pass(annotation);
-        return dictConfig.pass;
+        return dictConfig.isPass();
     }
 }
