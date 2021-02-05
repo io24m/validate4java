@@ -38,8 +38,5 @@ public abstract class AbstractValidator<T> implements BaseValidator<T> {
             return null;
         }
         return getTType(superclass);
-
-
     }
-
 }
