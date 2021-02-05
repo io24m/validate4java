@@ -3,6 +3,8 @@ package com.github.io24m.validate4java.validator.regexp;
 import com.github.io24m.validate4java.ValidateMetadata;
 import com.github.io24m.validate4java.validator.AbstractValidator;
 
+import java.util.regex.Pattern;
+
 /**
  * @author lk1
  * @description
@@ -11,12 +13,14 @@ import com.github.io24m.validate4java.validator.AbstractValidator;
 public class RegExpValidator extends AbstractValidator<RegExp> {
     @Override
     public boolean check(Object value, RegExp annotation, ValidateMetadata metadata) {
-
-        return false;
+        if (value == null) {
+            return true;
+        }
+        return Pattern.matches(annotation.regExp(), value.toString());
     }
 
     @Override
     public String errorMessage(Object value, RegExp annotation, ValidateMetadata metadata) {
-        return null;
+        return annotation.errorMessage();
     }
 }
