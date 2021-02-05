@@ -1,6 +1,6 @@
 package com.github.io24m.validate4java;
 
-import com.github.io24m.validate4java.validate.BaseValidator;
+import com.github.io24m.validate4java.validator.BaseValidator;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -14,7 +14,7 @@ import java.util.List;
  * @create 2021-01-29 14:22
  */
 
-public class Handle {
+public class Validate {
     private List<BaseValidator> validates = new ArrayList<>();
 
     public void config(BaseValidator... handles) {
@@ -64,16 +64,23 @@ public class Handle {
             Annotation[] annotations = field.getAnnotations();
             for (BaseValidator v : validates) {
                 for (Annotation a : annotations) {
-                    boolean check = v.filter(a);
-                    if (check) {
-                        ValidateMetadata validateMetadata = new ValidateMetadata();
-                        validateMetadata.setFileName(name);
-                        validateMetadata.setValue(fieldValue);
-                        validateMetadata.setAnnotation(a);
-                        validateMetadata.setBaseValidate(v);
-                        validateMetadata.setType(field.getType());
-                        res.add(validateMetadata);
+                    Class annotationType = v.getAnnotationType();
+                    boolean equals = annotationType.equals(a.annotationType());
+                    if (!equals) {
+                        continue;
                     }
+                    boolean filter = v.filter(a);
+                    if (!filter) {
+                        continue;
+                    }
+                    ValidateMetadata validateMetadata = new ValidateMetadata();
+                    validateMetadata.setFileName(name);
+                    validateMetadata.setValue(fieldValue);
+                    validateMetadata.setAnnotation(a);
+                    validateMetadata.setBaseValidate(v);
+                    validateMetadata.setType(field.getType());
+                    res.add(validateMetadata);
+
                 }
             }
         }

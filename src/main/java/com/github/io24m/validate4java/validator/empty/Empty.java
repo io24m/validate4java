@@ -1,9 +1,6 @@
-package com.github.io24m.validate4java.validate.annotation;
+package com.github.io24m.validate4java.validator.empty;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * @author lk1
@@ -12,6 +9,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
+@Inherited
 public @interface Empty {
     boolean pass() default false;
 

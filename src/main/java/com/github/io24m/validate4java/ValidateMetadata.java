@@ -1,7 +1,7 @@
 package com.github.io24m.validate4java;
 
 
-import com.github.io24m.validate4java.validate.BaseValidator;
+import com.github.io24m.validate4java.validator.BaseValidator;
 
 /**
  * @author lk1
