@@ -8,8 +8,6 @@ import com.github.io24m.validate4java.ValidateMetadata;
  * @create 2021-01-29 14:40
  */
 public interface BaseValidator<T> {
-    Class getAnnotationType();
-
     boolean filter(T annotation);
 
     boolean pass(T annotation);

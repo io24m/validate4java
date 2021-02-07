@@ -4,6 +4,8 @@ import com.github.io24m.validate4java.validator.BaseValidator;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,7 +66,7 @@ public class Validate {
             Annotation[] annotations = field.getAnnotations();
             for (BaseValidator v : validates) {
                 for (Annotation a : annotations) {
-                    Class annotationType = v.getAnnotationType();
+                    Class annotationType = getTType(v.getClass());
                     boolean equals = annotationType.equals(a.annotationType());
                     if (!equals) {
                         continue;
@@ -85,5 +87,20 @@ public class Validate {
             }
         }
         return res;
+    }
+    private Class getTType(Class clazz) {
+        if (clazz == null) {
+            return null;
+        }
+        Type genericSuperclass = clazz.getGenericSuperclass();
+        if (genericSuperclass instanceof ParameterizedType) {
+            Type actualTypeArgument = ((ParameterizedType) genericSuperclass).getActualTypeArguments()[0];
+            return (Class) actualTypeArgument;
+        }
+        Class superclass = clazz.getSuperclass();
+        if (superclass == null) {
+            return null;
+        }
+        return getTType(superclass);
     }
 }

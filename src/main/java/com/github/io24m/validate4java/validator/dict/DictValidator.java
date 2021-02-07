@@ -23,6 +23,9 @@ public class DictValidator extends AbstractValidator<Dict> {
         if (value == null) {
             return true;
         }
+        if (dictMap == null) {
+            return false;
+        }
         Set<String> keys = dictMap.get(annotation.dictKey());
         if (keys == null) {
             return false;
