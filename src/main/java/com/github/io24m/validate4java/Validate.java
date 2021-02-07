@@ -23,6 +23,14 @@ public class Validate {
         validates.addAll(Arrays.asList(handles));
     }
 
+    public ValidateResult handle(Object... values) {
+        ValidateResult result = new ValidateResult();
+        for (Object obj : values) {
+            result.merge(handle(obj));
+        }
+        return result;
+    }
+
     public ValidateResult handle(Object value) {
         ValidateResult result = new ValidateResult();
         List<ValidateInfo> res = new ArrayList<>();
@@ -42,10 +50,7 @@ public class Validate {
             info.setFileName(m.getFileName());
             res.add(info);
         }
-        Class<?> clazz = value.getClass();
         result.setValidateInfos(res);
-        result.setType(clazz.getTypeName());
-        result.setName(clazz.getSimpleName());
         return result;
     }
 
@@ -88,6 +93,7 @@ public class Validate {
         }
         return res;
     }
+
     private Class getTType(Class clazz) {
         if (clazz == null) {
             return null;

@@ -11,9 +11,12 @@ import java.util.stream.Collectors;
  * @create 2021-02-01 10:53
  */
 public class ValidateResult {
-    private String type;
-    private String name;
     private List<ValidateInfo> validateInfos = new ArrayList<>();
+
+    public ValidateResult merge(ValidateResult validateResult) {
+        validateInfos.addAll(validateResult.getValidateInfos());
+        return this;
+    }
 
     public boolean success() {
         if (validateInfos == null || validateInfos.size() == 0) {
@@ -22,7 +25,7 @@ public class ValidateResult {
         return validateInfos.stream().anyMatch(ValidateInfo::isSuccess);
     }
 
-    public List<String> getErrorMessage(Function<ValidateInfo, Boolean> filter) {
+    public List<String> getMessage(Function<ValidateInfo, Boolean> filter) {
         List<String> errorMessage = validateInfos.stream()
                 .filter(filter::apply)
                 .map(ValidateInfo::getErrorMessage)
@@ -31,27 +34,11 @@ public class ValidateResult {
     }
 
     public List<String> getErrorMessage() {
-        return getErrorMessage(x -> !x.isSuccess());
+        return getMessage(x -> !x.isSuccess());
     }
 
     public List<String> getMessage() {
-        return getErrorMessage(ValidateInfo::isSuccess);
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return getMessage(ValidateInfo::isSuccess);
     }
 
     public List<ValidateInfo> getValidateInfos() {

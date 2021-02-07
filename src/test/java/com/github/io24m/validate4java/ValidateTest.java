@@ -19,7 +19,7 @@ public class ValidateTest {
         Validate validate = new Validate();
         validate.config(new EmptyConfigValidator(new HashMap<>()));
         validate.config(new DictConfigValidator(null, new HashMap<>()));
-        ValidateResult result = validate.handle(new Person());
+        ValidateResult result = validate.handle(new Person(),new Person());
         System.out.println(result.getErrorMessage());
         System.out.println(result.getMessage());
     }
