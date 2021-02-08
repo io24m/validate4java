@@ -12,15 +12,15 @@ import java.util.regex.Pattern;
  */
 public class RegExpValidator extends AbstractValidator<RegExp> {
     @Override
-    public boolean check(Object value, RegExp annotation, ValidateMetadata metadata) {
+    public boolean check(Object value, ValidateMetadata<RegExp> metadata) {
         if (value == null) {
             return true;
         }
-        return Pattern.matches(annotation.regExp(), value.toString());
+        return Pattern.matches(metadata.getAnnotation().regExp(), value.toString());
     }
 
     @Override
-    public String errorMessage(Object value, RegExp annotation, ValidateMetadata metadata) {
-        return annotation.errorMessage();
+    public String errorMessage(ValidateMetadata<RegExp> metadata) {
+        return metadata.getAnnotation().errorMessage();
     }
 }

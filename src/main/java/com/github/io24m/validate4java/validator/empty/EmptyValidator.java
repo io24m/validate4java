@@ -11,12 +11,12 @@ import com.github.io24m.validate4java.validator.AbstractValidator;
  */
 public class EmptyValidator extends AbstractValidator<Empty> {
     @Override
-    public boolean check(Object value, Empty annotation, ValidateMetadata metadata) {
+    public boolean check(Object value, ValidateMetadata<Empty> metadata) {
         return value != null && !value.toString().equals("");
     }
 
     @Override
-    public String errorMessage(Object value, Empty annotation, ValidateMetadata metadata) {
-        return annotation.errorMessage();
+    public String errorMessage(ValidateMetadata<Empty> metadata) {
+        return metadata.getAnnotation().errorMessage();
     }
 }

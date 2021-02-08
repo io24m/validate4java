@@ -19,27 +19,27 @@ public class DictConfigValidator extends DictValidator {
     }
 
     @Override
-    public boolean filter(Dict annotation) {
-        DictConfig dictConfig = config.get(annotation.configKey());
+    public boolean filter(ValidateMetadata<Dict> metadata) {
+        DictConfig dictConfig = config.get(metadata.key());
         if (dictConfig == null)
-            return super.filter(annotation);
+            return super.filter(metadata);
         return dictConfig.isCheck();
     }
 
     @Override
-    public String errorMessage(Object value, Dict annotation, ValidateMetadata metadata) {
-        DictConfig dictConfig = config.get(annotation.configKey());
+    public String errorMessage(ValidateMetadata<Dict> metadata) {
+        DictConfig dictConfig = config.get(metadata.key());
         if (dictConfig == null)
-            return super.errorMessage(value, annotation, metadata);
+            return super.errorMessage(metadata);
         return dictConfig.getErrorMessage();
 
     }
 
     @Override
-    public boolean pass(Dict annotation) {
-        DictConfig dictConfig = config.get(annotation.configKey());
+    public boolean pass(ValidateMetadata<Dict> metadata) {
+        DictConfig dictConfig = config.get(metadata.key());
         if (dictConfig == null)
-            return super.pass(annotation);
+            return super.pass(metadata);
         return dictConfig.isPass();
     }
 }

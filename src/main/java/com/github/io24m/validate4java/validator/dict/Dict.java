@@ -15,7 +15,5 @@ public @interface Dict {
 
     boolean pass() default false;
 
-    String configKey() default "";
-
     String errorMessage() default "dictionary error";
 }

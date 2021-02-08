@@ -8,12 +8,16 @@ import com.github.io24m.validate4java.validator.BaseValidator;
  * @description
  * @create 2021-01-29 15:04
  */
-public class ValidateMetadata {
+public class ValidateMetadata<T> {
     private Class type;
     private String fileName;
     private Object value;
-    private Object annotation;
+    private T annotation;
     private BaseValidator baseValidate;
+
+    public String key() {
+        return String.format("%s-%s", type.getName(), fileName);
+    }
 
     public Class getType() {
         return type;
@@ -39,11 +43,11 @@ public class ValidateMetadata {
         this.value = value;
     }
 
-    public Object getAnnotation() {
+    public T getAnnotation() {
         return annotation;
     }
 
-    public void setAnnotation(Object annotation) {
+    public void setAnnotation(T annotation) {
         this.annotation = annotation;
     }
 

@@ -17,28 +17,28 @@ public class EmptyConfigValidator extends EmptyValidator {
     }
 
     @Override
-    public boolean filter(Empty annotation) {
-        EmptyConfig config = this.cfg.get(annotation.configKey());
+    public boolean filter(ValidateMetadata<Empty> metadata) {
+        EmptyConfig config = this.cfg.get(metadata.key());
         if (config == null) {
-            return super.filter(annotation);
+            return super.filter(metadata);
         }
         return config.isCheck();
     }
 
     @Override
-    public boolean pass(Empty annotation) {
-        EmptyConfig config = this.cfg.get(annotation.configKey());
+    public boolean pass(ValidateMetadata<Empty> metadata) {
+        EmptyConfig config = this.cfg.get(metadata.key());
         if (config == null) {
-            return super.pass(annotation);
+            return super.pass(metadata);
         }
         return config.isPass();
     }
 
     @Override
-    public String errorMessage(Object value, Empty annotation, ValidateMetadata metadata) {
-        EmptyConfig config = this.cfg.get(annotation.configKey());
+    public String errorMessage(ValidateMetadata<Empty> metadata) {
+        EmptyConfig config = this.cfg.get(metadata.key());
         if (config == null) {
-            return super.errorMessage(value, annotation, metadata);
+            return super.errorMessage(metadata);
         }
         return config.getErrorMessage();
     }

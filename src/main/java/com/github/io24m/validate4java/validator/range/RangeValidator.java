@@ -10,10 +10,11 @@ import com.github.io24m.validate4java.validator.AbstractValidator;
  */
 public class RangeValidator extends AbstractValidator<Range> {
     @Override
-    public boolean check(Object value, Range annotation, ValidateMetadata metadata) {
+    public boolean check(Object value, ValidateMetadata<Range> metadata) {
         if (value == null) {
             return true;
         }
+        Range annotation = metadata.getAnnotation();
         String s = value.toString();
         int length = s.length();
         if (annotation.minLength() != -1 && length < annotation.minLength()) {
@@ -26,7 +27,7 @@ public class RangeValidator extends AbstractValidator<Range> {
     }
 
     @Override
-    public String errorMessage(Object value, Range annotation, ValidateMetadata metadata) {
-        return annotation.errorMessage();
+    public String errorMessage(ValidateMetadata<Range> metadata) {
+        return metadata.getAnnotation().errorMessage();
     }
 }

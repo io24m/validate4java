@@ -8,11 +8,11 @@ import com.github.io24m.validate4java.ValidateMetadata;
  * @create 2021-01-29 14:40
  */
 public interface BaseValidator<T> {
-    boolean filter(T annotation);
+    boolean filter(ValidateMetadata<T> metadata);
 
-    boolean pass(T annotation);
+    boolean pass(ValidateMetadata<T> metadata);
 
-    boolean check(Object value, T annotation, ValidateMetadata metadata);
+    boolean check(Object value, ValidateMetadata<T> metadata);
 
-    String errorMessage(Object value, T annotation, ValidateMetadata metadata);
+    String errorMessage(ValidateMetadata<T> metadata);
 }

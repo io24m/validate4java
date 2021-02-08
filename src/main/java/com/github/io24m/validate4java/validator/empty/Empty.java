@@ -13,7 +13,5 @@ import java.lang.annotation.*;
 public @interface Empty {
     boolean pass() default false;
 
-    String configKey() default "";
-
     String errorMessage() default "empty error";
 }

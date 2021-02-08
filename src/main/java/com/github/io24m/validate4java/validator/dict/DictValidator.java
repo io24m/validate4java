@@ -19,14 +19,14 @@ public class DictValidator extends AbstractValidator<Dict> {
     }
 
     @Override
-    public boolean check(Object value, Dict annotation, ValidateMetadata metadata) {
+    public boolean check(Object value, ValidateMetadata<Dict> metadata) {
         if (value == null) {
             return true;
         }
         if (dictMap == null) {
             return false;
         }
-        Set<String> keys = dictMap.get(annotation.dictKey());
+        Set<String> keys = dictMap.get(metadata.getAnnotation().dictKey());
         if (keys == null) {
             return false;
         }
@@ -34,7 +34,7 @@ public class DictValidator extends AbstractValidator<Dict> {
     }
 
     @Override
-    public String errorMessage(Object value, Dict annotation, ValidateMetadata metadata) {
-        return annotation.errorMessage();
+    public String errorMessage(ValidateMetadata<Dict> metadata) {
+        return metadata.getAnnotation().errorMessage();
     }
 }

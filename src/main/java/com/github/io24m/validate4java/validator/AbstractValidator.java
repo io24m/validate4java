@@ -1,5 +1,7 @@
 package com.github.io24m.validate4java.validator;
 
+import com.github.io24m.validate4java.ValidateMetadata;
+
 /**
  * @author lk1
  * @description
@@ -7,12 +9,12 @@ package com.github.io24m.validate4java.validator;
  */
 public abstract class AbstractValidator<T> implements BaseValidator<T> {
     @Override
-    public boolean pass(T annotation) {
+    public boolean pass(ValidateMetadata<T> metadata) {
         return false;
     }
 
     @Override
-    public boolean filter(T annotation) {
+    public boolean filter(ValidateMetadata<T> metadata) {
         return true;
     }
 }

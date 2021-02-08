@@ -38,13 +38,13 @@ public class Validate {
         for (ValidateMetadata m : validateMetadata) {
             ValidateInfo info = new ValidateInfo();
             BaseValidator baseValidate = m.getBaseValidate();
-            boolean success = baseValidate.check(m.getValue(), m.getAnnotation(), m);
+            boolean success = baseValidate.check(m.getValue(), m);
             if (success) {
                 continue;
             }
-            boolean pass = baseValidate.pass(m.getAnnotation());
+            boolean pass = baseValidate.pass(m);
             info.setSuccess(pass);
-            String errorMessage = baseValidate.errorMessage(m.getValue(), m.getAnnotation(), m);
+            String errorMessage = baseValidate.errorMessage(m);
             info.setErrorMessage(errorMessage);
             info.setType(m.getType());
             info.setFileName(m.getFileName());
@@ -76,16 +76,17 @@ public class Validate {
                     if (!equals) {
                         continue;
                     }
-                    boolean filter = v.filter(a);
-                    if (!filter) {
-                        continue;
-                    }
+
                     ValidateMetadata validateMetadata = new ValidateMetadata();
                     validateMetadata.setFileName(name);
                     validateMetadata.setValue(fieldValue);
                     validateMetadata.setAnnotation(a);
                     validateMetadata.setBaseValidate(v);
                     validateMetadata.setType(field.getType());
+                    boolean filter = v.filter(validateMetadata);
+                    if (!filter) {
+                        continue;
+                    }
                     res.add(validateMetadata);
 
                 }
