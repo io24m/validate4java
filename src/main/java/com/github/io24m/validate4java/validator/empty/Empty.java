@@ -15,5 +15,5 @@ public @interface Empty {
 
     String configKey() default "";
 
-    String errorMessage() default "";
+    String errorMessage() default "empty error";
 }

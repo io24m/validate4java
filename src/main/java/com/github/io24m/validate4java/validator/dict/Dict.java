@@ -17,5 +17,5 @@ public @interface Dict {
 
     String configKey() default "";
 
-    String errorMessage() default "";
+    String errorMessage() default "dictionary error";
 }

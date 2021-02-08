@@ -15,5 +15,5 @@ public @interface Range {
 
     int maxLength() default -1;
 
-    String errorMessage() default "";
+    String errorMessage() default "range error";
 }

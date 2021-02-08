@@ -13,5 +13,5 @@ import java.lang.annotation.*;
 public @interface RegExp {
     String regExp() default "";
 
-    String errorMessage() default "";
+    String errorMessage() default "regular expression error";
 }
